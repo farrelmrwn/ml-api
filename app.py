@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import tensorflow as tf
 import pandas as pd
 import numpy as np
+import os  
 
 app = Flask(__name__)
 
@@ -52,3 +53,7 @@ def recommend():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))
+    app.run(debug=True, host='0.0.0.0', port=port)
